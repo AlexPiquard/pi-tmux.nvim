@@ -1,0 +1,12 @@
+{
+	"diagnostics": {
+		"globals": ["vim", "snacks"]
+	},
+	"workspace": {
+		"library": [
+			"/usr/share/nvim/runtime/lua",
+			"$HOME/.local/share/nvim/lazy/luv/library",
+			"$HOME/.local/share/nvim/lazy/snacks.nvim/"
+		]
+	}
+}
