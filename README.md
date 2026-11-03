@@ -102,6 +102,27 @@ require("pi-tmux").setup({
 - `"force"`: reload the file even if the buffer has unsaved changes;
 - `"notify"`: keep the buffer and show a warning.
 
+## API
+
+<details>
+<summary>Ask</summary>
+
+```lua
+require("pi-tmux").ask("An optional prompt here", {prompt = "The input dialog title here"}) -- Second arg is config.ask opts
+```
+
+</details>
+
+<details>
+<summary>Scroll up/down</summary>
+
+```lua
+require("pi-tmux").scroll_up(3) -- 3 = lines to scroll
+require("pi-tmux").scroll_down(1)
+```
+
+</details>
+
 ## License
 
 [MIT](./LICENSE)
