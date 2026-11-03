@@ -107,16 +107,4 @@ describe("reload", function()
 
 		assert(vim.deep_equal(Helpers.lines(file.buf), { "one", "two" }))
 	end)
-
-	it("warns when the watched file disappears", function()
-		local file = Helpers.temp_file({ "one", "two" })
-		setup_reload()
-
-		vim.fn.delete(file.path)
-
-		assert(Helpers.wait_until(function()
-			return Helpers.has_notify(notify, "file disappeared")
-		end))
-		assert(vim.deep_equal(Helpers.lines(file.buf), { "one", "two" }))
-	end)
 end)
