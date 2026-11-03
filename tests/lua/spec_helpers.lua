@@ -24,6 +24,10 @@ function M.temp_file(lines, name)
 	M.writefile(path, lines)
 	vim.cmd("edit " .. vim.fn.fnameescape(path))
 	local buf = vim.api.nvim_get_current_buf()
+	-- Use the name nvim actually stores: it is canonical on every platform
+	-- (forward slashes, symlinks resolved, long paths), so it always matches
+	-- what pi-tmux.buffer.get_path() returns.
+	path = vim.api.nvim_buf_get_name(buf)
 	table.insert(buffers, buf)
 	return { dir = dir, path = path, buf = buf }
 end
