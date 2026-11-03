@@ -142,10 +142,7 @@ function M.merge(buf)
 	if code == nil or code < 0 or code >= 128 then
 		cleanup()
 		local detail = result.stderr and vim.trim(result.stderr) or ""
-		vim.notify(
-			"Pi-tmux: git merge-file failed" .. (detail ~= "" and (": " .. detail) or ""),
-			vim.log.levels.WARN
-		)
+		vim.notify("Pi-tmux: git merge-file failed" .. (detail ~= "" and (": " .. detail) or ""), vim.log.levels.WARN)
 		return false
 	end
 

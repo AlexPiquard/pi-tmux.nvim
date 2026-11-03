@@ -7,7 +7,7 @@ M.setup = function(opts)
 	require("pi-tmux.reload").setup()
 end
 
----@param prompt? string The prompt opts overriding the default ones for this call 
+---@param prompt? string The prompt opts overriding the default ones for this call
 ---@param opts? PiTmux.Prompt.Opts The opts overriding the default one for this call
 function M.ask(prompt, opts)
 	opts = require("pi-tmux.config").get("ask", opts)
