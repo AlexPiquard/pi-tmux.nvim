@@ -10,6 +10,7 @@ Table of Contents                                  *pi-tmux-table-of-contents*
   - Installation                           |pi-tmux-pi-tmux.nvim-installation|
   - Usage                                         |pi-tmux-pi-tmux.nvim-usage|
   - Configuration                         |pi-tmux-pi-tmux.nvim-configuration|
+  - API                                             |pi-tmux-pi-tmux.nvim-api|
   - License                                     |pi-tmux-pi-tmux.nvim-license|
 
 ==============================================================================
@@ -118,6 +119,22 @@ Defaults:
 - `"merge"`: merge pi changes into the unsaved buffer;
 - `"force"`: reload the file even if the buffer has unsaved changes;
 - `"notify"`: keep the buffer and show a warning.
+
+
+API                                                 *pi-tmux-pi-tmux.nvim-api*
+
+Ask ~
+
+>lua
+    require("pi-tmux").ask("An optional prompt here", {prompt = "The input dialog title here"}) -- Second arg is config.ask opts
+<
+
+Scroll up/down ~
+
+>lua
+    require("pi-tmux").scroll_up(3) -- 3 = lines to scroll
+    require("pi-tmux").scroll_down(1)
+<
 
 
 LICENSE                                         *pi-tmux-pi-tmux.nvim-license*
