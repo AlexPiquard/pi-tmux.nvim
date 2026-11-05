@@ -5,6 +5,7 @@ local M = {}
 
 ---@class PiTmux.Prompt.Opts
 ---@field prompt? string Text of the prompt input
+---@field default? vim.ui.input.Opts Options for default vim.ui.input
 ---@field snacks? snacks.input.Opts Options for [snacks.input](https://github.com/folke/snacks.nvim/blob/main/docs/input.md).
 
 local function get_current_selection()
@@ -36,13 +37,16 @@ end
 ---@param on_confirm fun(input?: string)
 ---@param opts PiTmux.Prompt.Opts The opts to use
 local function input(on_confirm, opts)
-	---@type snacks.input.Opts
-	local input_opts = {}
-	input_opts = vim.tbl_deep_extend("keep", opts, input_opts)
+	local input_opts = vim.deepcopy(opts)
+	input_opts.snacks = nil
+	input_opts.default = nil
 	local snacks_ok, snacks = pcall(require, "snacks")
 	if snacks_ok and snacks.config.get("input", {}).enabled and opts.snacks.enabled then
 		input_opts = vim.tbl_deep_extend("keep", input_opts, opts.snacks)
+	elseif opts.default and type(opts.default) == "table" then
+		input_opts = vim.tbl_deep_extend("keep", input_opts, opts.default)
 	end
+
 	vim.ui.input(input_opts, function(msg)
 		if not msg or msg == "" then
 			return
