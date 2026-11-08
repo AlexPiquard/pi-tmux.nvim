@@ -144,7 +144,7 @@ describe("pane lookup", function()
 			panes = { { window = "@1", pane = "%1", cmd = "bash" } },
 		})
 
-		assert(Pane.find_pi_pane() == nil)
+		assert(Pane.find_pi_pane(true) == nil)
 		assert(#notify.notes == 1)
 		assert(Helpers.has_notify(notify, "Couldn't find"))
 	end)

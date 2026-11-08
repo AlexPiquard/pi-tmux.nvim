@@ -40,7 +40,9 @@ local function valid_cached_pane()
 	return nil
 end
 
-local function search_pi_pane(current_window_id)
+---@param current_window_id string
+---@param notify? boolean
+local function search_pi_pane(current_window_id, notify)
 	local out = M.cmd({ "tmux", "list-panes", "-a", "-F", "#{window_id} #{pane_id} #{pane_current_command}" })
 	if not out then
 		return nil
@@ -67,11 +69,15 @@ local function search_pi_pane(current_window_id)
 		return fallback_pane
 	end
 
-	vim.notify("Pi-tmux: Couldn't find a Tmux pane running 'pi'!", vim.log.levels.WARN)
+	if notify then
+		vim.notify("Pi-tmux: Couldn't find a Tmux pane running 'pi'!", vim.log.levels.WARN)
+	end
+
 	return nil
 end
 
-function M.find_pi_pane()
+---@param notify? boolean
+function M.find_pi_pane(notify)
 	local pane_id = valid_cached_pane()
 	if pane_id then
 		return pane_id
@@ -84,15 +90,16 @@ function M.find_pi_pane()
 		return nil
 	end
 
-	return search_pi_pane(current_window_id)
+	return search_pi_pane(current_window_id, notify)
 end
 
-function M.get_cached_pi_pane()
+---@param notify? boolean
+function M.get_cached_pi_pane(notify)
 	if cached then
 		return cached.pane
 	end
 
-	return M.find_pi_pane()
+	return M.find_pi_pane(notify)
 end
 
 function M.invalidate()

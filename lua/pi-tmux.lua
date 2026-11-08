@@ -14,6 +14,11 @@ function M.ask(prompt, opts)
 	require("pi-tmux.prompt").ask(true, prompt, opts)
 end
 
+---@param notify? boolean
+function M.get_pi_pane(notify)
+	return require("pi-tmux.pane").get_cached_pi_pane(notify)
+end
+
 ---@param count? integer
 function M.scroll_down(count)
 	require("pi-tmux.scroll").scroll_down(count)
