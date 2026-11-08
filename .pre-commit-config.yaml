@@ -1,0 +1,15 @@
+# See https://prek.j178.dev for more information.
+# yaml-language-server: $schema=https://www.schemastore.org/prek.json
+repos:
+  - repo: https://github.com/JohnnyMorganz/StyLua
+    rev: v2.6.0
+    hooks:
+      - id: stylua
+
+  - repo: local
+    hooks:
+      - id: make-test
+        name: make test
+        entry: make test
+        language: system
+        pass_filenames: false
