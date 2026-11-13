@@ -1,5 +1,5 @@
 *pi-tmux.txt*
-                         For Neovim >= 0.10.0    Last change: 2026 November 05
+                         For Neovim >= 0.10.0    Last change: 2026 November 13
 
 ==============================================================================
 Table of Contents                                  *pi-tmux-table-of-contents*
